@@ -1,1 +1,3 @@
-# your-manager
+# Your Manager
+
+Automat do zastępowania menedżerów w korporacjach
