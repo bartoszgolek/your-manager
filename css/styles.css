@@ -11,7 +11,20 @@ label {
 }
 
 .content {
-    height: 100vh;
+    height: calc(100vh - 30px);
+}
+
+.chat {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.log {
+    display: inline;
+    overflow: auto;
+    flex-grow: 1;
+    border-bottom: 1px solid grey;
 }
 
 .loginForm {
@@ -28,13 +41,11 @@ label {
 }
 
 .messageForm {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    position: absolute;
-    bottom: 30px;
+    flex-basis: 50px;
     width: 100%;
-    height: 50px;
 }
 
 .messageForm label {
@@ -80,14 +91,4 @@ label {
 .user-message .name,
 .manager-message .name {
     font-weight: bold;
-}
-
-.chat {
-    height: calc(100% - 80px);
-    border-bottom: 1px solid grey;
-}
-
-.log {
-    overflow: auto;
-    height: 100%;
 }
