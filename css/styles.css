@@ -92,3 +92,22 @@ label {
 .manager-message .name {
     font-weight: bold;
 }
+
+.lang {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.lang li {
+    display: inline;
+    list-style-type: none;
+    padding: 0 5px;
+}
+
+.lang li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}

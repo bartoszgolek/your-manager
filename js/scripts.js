@@ -1,13 +1,37 @@
+var qs = (function(a) {
+    if (a === "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length === 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
+
+var language = (function() {
+    if ("lang" in qs) {
+        if(['pl', 'en'].indexOf(qs['lang']) !== -1) {
+            return qs['lang']
+        }
+    }
+
+    return 'pl'
+})();
+
 var yourManager = {
     box: null,
     userName: '',
 
     manager: {
         texts: [
-            'Jak mogę Ci pomóc?',
-            'A co Ty możesz z tym zrobić?',
-            'W maszej organizacji, musisz brać sprawy w swoje ręce!',
-            'Cieszę się, że mogłem pomóc!'
+            resources[language].howCanIHelpYou,
+            resources[language].whatYouCanDoAboutThis,
+            resources[language].inOurOrganizationYouHaveToTakeMattersIntoTheirOwnHands,
+            resources[language].imGladICouldHelp
         ],
         index: 0,
         name: '',
@@ -23,13 +47,13 @@ var yourManager = {
     loginFrom: {
         buildForm: function () {
             var form = $('<form class="loginForm"></form>');
-            form.append('<label for="manager-name">Imię menedżera:</label>');
+            form.append('<label for="manager-name">' + resources[language].managerName + '</label>');
             form.append('<input name="manager-name" class="manager-name" type="text" />');
             form.append('<br>');
-            form.append('<label for="user-name">Twoje imię:</label>');
+            form.append('<label for="user-name">' + resources[language].yourName + '</label>');
             form.append('<input name="user-name" class="user-name" type="text" />');
             form.append('<br>');
-            form.append('<input type="submit" class="submit" value="Zatwierdź" />');
+            form.append('<input type="submit" class="submit" value="' + resources[language].accept + '" />');
             return form;
         },
         show: function () {
@@ -49,9 +73,9 @@ var yourManager = {
 
         buildForm: function () {
             var form = $('<form class="messageForm"></form>');
-            form.html('<label for="message">Wiadomość:</label>');
+            form.html('<label for="message">' + resources[language].message + '</label>');
             form.append('<input name="message" class="message" type="text" />');
-            form.append('<input type="submit" class="submit" value="Wyślij" />');
+            form.append('<input type="submit" class="submit" value="' + resources[language].send + '" />');
             return form;
         },
         buildChat: function () {
